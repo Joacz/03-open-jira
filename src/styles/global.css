@@ -1,0 +1,5 @@
+* {
+  font-family: 'Rubik' !important;
+  transition: all .3s ease-in;
+  user-select: none;
+}
