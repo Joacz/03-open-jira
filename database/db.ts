@@ -9,12 +9,12 @@ import mongoose from 'mongoose';
 
 const mongooConnection = {
   isConnected: 0
-}
+};
 
 export const connect = async () => {
 
   if (mongooConnection.isConnected === 1) {
-    console.log('Mongoose is connected')
+    console.log('Mongoose is connected');
     return;
   }
 
@@ -32,12 +32,14 @@ export const connect = async () => {
   await mongoose.connect(process.env.MONGO_URL || '');
   mongooConnection.isConnected = 1;
 
-}
+};
 
 
 export const disconnect = async () => {
+  if (process.env.NODE_ENV === 'development') return;
+
   if (mongooConnection.isConnected === 0) return;
 
   await mongoose.disconnect();
-  console.log("Mongo disconnected")
-}
+  console.log("Mongo disconnected");
+};
